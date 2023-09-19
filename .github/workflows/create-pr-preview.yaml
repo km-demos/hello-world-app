@@ -49,7 +49,8 @@ jobs:
           number: ${{ github.event.pull_request.number }}
           header: release
           message: |
+            [Preview vcluster](${{ secrets.LOFT_URL }}/projects/preview/vclusters/$REPO_NAME-pr-${{ github.event.pull_request.number }}/pods)
+            
             [Preview environment link](https://${{ env.REPO_NAME}}-pr-${{ github.event.pull_request.number }}.previews.k8s.kurtmadel.com)
-            [Preview vcluster pods](${{ secrets.LOFT_URL }})projects/preview/vclusters/$REPO_NAME-pr-${{ github.event.pull_request.number }}/pods
             
           
