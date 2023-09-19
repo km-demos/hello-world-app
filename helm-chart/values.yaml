@@ -4,19 +4,20 @@
 
 replicaCount: 1
 image:
-  repository: ghcr.io/km-demos/hello-world-app
+  repository: ghcr.io/km-demos/echo-app
   pullPolicy: IfNotPresent
   # use Chart appVersion if not set as value
   tag: ""
-  args:
-    text: echo v1
 imagePullSecrets:
   - name: ghcr-login-secret
 nameOverride: ""
 fullnameOverride: ""
 deployment:
   # used to specify commit sha in CI job
-  commit: 62c016441f71377512dd6acbaa88a791cbbf5d1f
+  commit: 
+  annotations:
+    app.komodor.com/app: https://github.com/km-demos/echo-app
+    link.argocd.argoproj.io/external-link: https://app.komodor.com/main/deep-dive/kurt-madel.demo-cluster-echo-app.echo-app
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -50,19 +51,19 @@ ingress:
     nginx.ingress.kubernetes.io/ssl-passthrough: 'false'
     nginx.ingress.kubernetes.io/backend-protocol: 'HTTP'
   hosts:
-    - host: hello-world-app.k8s.kurtmadel.com
+    - host: echo-app.examples.kurtmadel.com
       paths:
         - backend:
             service:
-              name: hello-world-app
+              name: echo-app
               port:
                 name: HTTP
           path: /
           pathType: Prefix
   tls:
-    - secretName: hello-world-app-tls
+    - secretName: echo-app-tls
       hosts:
-        - hello-world-app.k8s.kurtmadel.com
+        - echo-app.examples.kurtmadel.com
 resources: {}
 # We usually recommend not to specify default resources and to leave this as a conscious
 # choice for the user. This also increases chances charts run on environments with little
