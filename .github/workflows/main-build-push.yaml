@@ -77,8 +77,8 @@ jobs:
         with:
           context: ./src
           platforms: linux/amd64,linux/arm64
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache
+          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache,mode=max
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.NEW_APP_VERSION }}
           outputs: type=image,name=target,annotation-index.org.opencontainers.image.description=Simple echo app based on the HashiCorp echo-http.
