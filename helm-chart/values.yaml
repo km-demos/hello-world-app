@@ -4,7 +4,7 @@
 
 replicaCount: 1
 image:
-  repository: ghcr.io/km-demos/REPO_NAME
+  repository: ghcr.io/km-demos/hello-world-app
   pullPolicy: IfNotPresent
   # use Chart appVersion if not set as value
   tag: ""
@@ -50,19 +50,19 @@ ingress:
     nginx.ingress.kubernetes.io/ssl-passthrough: 'false'
     nginx.ingress.kubernetes.io/backend-protocol: 'HTTP'
   hosts:
-    - host: REPO_NAME.k8s.kurtmadel.com
+    - host: hello-world-app.k8s.kurtmadel.com
       paths:
         - backend:
             service:
-              name: REPO_NAME
+              name: hello-world-app
               port:
                 name: HTTP
           path: /
           pathType: Prefix
   tls:
-    - secretName: REPO_NAME-tls
+    - secretName: hello-world-app-tls
       hosts:
-        - REPO_NAME.k8s.kurtmadel.com
+        - hello-world-app.k8s.kurtmadel.com
 resources: {}
 # We usually recommend not to specify default resources and to leave this as a conscious
 # choice for the user. This also increases chances charts run on environments with little
