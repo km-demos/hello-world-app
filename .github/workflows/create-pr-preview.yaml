@@ -50,10 +50,10 @@ jobs:
           number: ${{ github.event.pull_request.number }}
           header: release
           message: |
-            [Preview environment app link](https://${{ env.REPO_NAME}}-pr-${{ github.event.pull_request.number }}.previews.k8s.kurtmadel.com)
+            [Argo CD app deployment](https://argocd.k8s.kurtmadel.com/applications/argocd/${{ env.REPO_NAME}}-${{ github.event.pull_request.head.ref }}-${{ github.event.pull_request.number }}?view=tree&resource=)
             
-            [Argo CD App](https://argocd.k8s.kurtmadel.com/applications/argocd/${{ env.REPO_NAME}}-${{ github.event.pull_request.head.ref }}-${{ github.event.pull_request.number }}?view=tree&resource=)
+            [Preview environment link](https://${{ env.REPO_NAME}}-pr-${{ github.event.pull_request.number }}.previews.k8s.kurtmadel.com)
             
-            [Preview vcluster pods](${{ secrets.LOFT_URL }}projects/preview/vclusters/$REPO_NAME-pr-${{ github.event.pull_request.number }}/pods)
+            [Preview vcluster pods](${{ secrets.LOFT_URL }}projects/preview/vclusters/${{ env.REPO_NAME}}-pr-${{ github.event.pull_request.number }}/pods)
             
           
