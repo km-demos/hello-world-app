@@ -17,12 +17,6 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - id: checkout
-        if: github.event.action == 'unlabeled'
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-
       - id: delete-argocd-app
         if: github.event.action == 'unlabeled'
         continue-on-error: true
