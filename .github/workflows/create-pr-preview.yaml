@@ -18,11 +18,6 @@ jobs:
       id-token: write
       pull-requests: write
     steps:
-      - id: checkout
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-
       - id: install-loft-cli
         uses: loft-sh/setup-loft@v2
         with:
